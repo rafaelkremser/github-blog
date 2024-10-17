@@ -1,22 +1,26 @@
 import { Header } from "../../components/Header";
+import { Post } from "../../components/Post";
 import { ProfileCard } from "../../components/ProfileCard";
-import { SearchPostForm } from "./styles";
+import { SearchForm } from "./SearchForm";
+import { PostsContainer } from "./styles";
+import { IssuesContext } from "../../contexts/IssuesContext";
+import { useContext } from "react";
 
 export function Posts() {
+  const { issues } = useContext(IssuesContext);
+
   return (
     <>
       <Header />
       <ProfileCard />
 
-      <SearchPostForm>
-        <header>
-          <h3>Publicações</h3>
-          <span>6 publicações</span>
-        </header>
-        <form>
-          <input type="text" placeholder="Buscar conteúdo" />
-        </form>
-      </SearchPostForm>
+      <SearchForm />
+
+      <PostsContainer>
+        {issues.map((issue) => (
+          <Post key={issue.id} title={issue.title} body={issue.body} />
+        ))}
+      </PostsContainer>
     </>
-  )
+  );
 }
