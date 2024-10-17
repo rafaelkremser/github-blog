@@ -24,7 +24,7 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
   const fetchIssues = useCallback(async (query?: string) => {
     const response = await api.get('/search/issues', {
       params: {
-        q: `repo:github-blog ${query || ''}`,
+        q: `repo:rafaelkremser/github-blog ${query || ''}`,
       },
     });
 
