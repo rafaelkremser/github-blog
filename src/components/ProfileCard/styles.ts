@@ -19,6 +19,8 @@ export const ProfileCardContainer = styled.div`
   }
 
   article {
+    flex: 1;
+
     div {
       header {
         display: flex;
