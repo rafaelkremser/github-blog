@@ -1,18 +1,19 @@
 import { PostCard } from "./styles";
 
 interface PostProps {
-  id: number
+  number: number
   title: string
   body: string
+  createdAt: string
 }
 
-export function Post({ id, title, body }: PostProps) {
+export function Post({ number, title, body, createdAt }: PostProps) {
   return (
-    <a href={`/${id}`}>
+    <a href={`issues/${number}`}>
       <PostCard>
         <header>
           <h1>{title}</h1>
-          <span>Há 1 dia</span>
+          <span>{createdAt}</span>
         </header>
         <p>{body}</p>
       </PostCard>

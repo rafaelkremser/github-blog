@@ -18,7 +18,7 @@ export function Posts() {
 
       <PostsContainer>
         {issues.map((issue) => (
-          <Post key={issue.id} id={issue.id} title={issue.title} body={issue.body} />
+          <Post key={issue.id} number={issue.number} title={issue.title} body={issue.body} createdAt={issue.created_at} />
         ))}
       </PostsContainer>
     </>

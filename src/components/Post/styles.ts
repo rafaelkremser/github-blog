@@ -36,5 +36,6 @@ export const PostCard = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
+    color: ${(props) => props.theme["base-text"]};
   }
 `;

@@ -30,34 +30,33 @@ export function ProfileCard() {
   
   return (
     <ProfileCardContainer>
-        <img src="https://github.com/rafaelkremser.png" alt="Foto de perfil do Github" />
-
-        <article>
+      <img src="https://github.com/rafaelkremser.png" alt="Foto de perfil do Github" />
+      <article>
+        <div>
+          <header>
+            <h1>{user.name}</h1>
+            <a href="https://github.com/rafaelkremser" target="_blank">
+              GITHUB
+              <ExternalLinkIcon />
+            </a>
+          </header>
+          <p>{user.bio}</p>
+        </div>
+        <footer>
           <div>
-            <header>
-              <h1>{user.name}</h1>
-              <a href="https://github.com/rafaelkremser" target="_blank">
-                GITHUB
-                <ExternalLinkIcon />
-              </a>
-            </header>
-            <p>{user.bio}</p>
+            <GitHubLogoIcon />
+            rafaelkremser
           </div>
-          <footer>
-            <div>
-              <GitHubLogoIcon />
-              rafaelkremser
-            </div>
-            <div>
-              <Code size={15} weight="bold" />
-              {user.public_repos} repositórios
-            </div>
-            <div>
-              <Users size={15} weight="fill" />
-              {user.followers} seguidores
-            </div>
-          </footer>
-        </article>
-      </ProfileCardContainer>
+          <div>
+            <Code size={15} weight="bold" />
+            {user.public_repos} repositórios
+          </div>
+          <div>
+            <Users size={15} weight="fill" />
+            {user.followers} seguidores
+          </div>
+        </footer>
+      </article>
+    </ProfileCardContainer>
   )
 }

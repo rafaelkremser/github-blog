@@ -12,7 +12,7 @@ const searchFormSchema = z.object({
 type SearchFormInputs = z.infer<typeof searchFormSchema>
 
 export function SearchForm() {
-  const { fetchIssues } = useContext(IssuesContext)
+  const { fetchIssues, issues } = useContext(IssuesContext)
   
   const {
     register,
@@ -29,7 +29,7 @@ export function SearchForm() {
     <SearchPostForm onSubmit={handleSubmit(handleSearchIssues)}>
       <header>
         <h3>Publicações</h3>
-        <span>6 publicações</span>
+        <span>{ issues.length } publicações</span>
       </header>
       <form>
         <input

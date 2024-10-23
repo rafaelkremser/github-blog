@@ -1,10 +1,16 @@
 import { createContext, ReactNode, useCallback, useEffect, useState } from "react";
 import { api } from "../lib/axios";
+import { formatDistanceToNow } from 'date-fns';
+import { ptBR } from 'date-fns/locale';
 
-interface Issue {
+export interface Issue {
   id: number;
   title: string;
   body: string;
+  number: number;
+  comments: number;
+  html_url: string;
+  created_at: string;
 }
 
 interface IssueContextType {
@@ -18,6 +24,10 @@ interface IssuesProviderProps {
   children: ReactNode;
 }
 
+function capitalizeFirstLetter(string: string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 export function IssuesProvider({ children }: IssuesProviderProps) {
   const [issues, setIssues] = useState<Issue[]>([]);
 
@@ -28,7 +38,17 @@ export function IssuesProvider({ children }: IssuesProviderProps) {
       },
     });
 
-    setIssues(response.data.items);
+    const formattedIssues = response.data.items.map((issue: Issue) => ({
+      ...issue,
+      created_at: capitalizeFirstLetter(
+        formatDistanceToNow(new Date(issue.created_at), {
+          locale: ptBR,
+          addSuffix: true,
+        })
+      )
+    }));
+
+    setIssues(formattedIssues);
   }, []);
 
   useEffect(() => {
